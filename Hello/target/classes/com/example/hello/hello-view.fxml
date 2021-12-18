@@ -13,7 +13,7 @@
             <Image url="@snk.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="b" layoutX="97.0" layoutY="477.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="55.0" text="Button" />
+      <Button fx:id="b" layoutX="97.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="Button" />
       <Label fx:id="label" layoutX="332.0" layoutY="633.0" text="Label" />
       <Button fx:id="next" layoutX="319.0" layoutY="595.0" mnemonicParsing="false" onAction="#click" text="Button" />
    </children>
