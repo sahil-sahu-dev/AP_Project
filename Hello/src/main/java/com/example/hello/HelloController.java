@@ -134,16 +134,16 @@ public class HelloController {
     private Button b2;
 
 
-     int firstRan = randomNum();
-     int firstRan2 = randomNum();
+     private int firstRan = randomNum();
+     private int firstRan2 = randomNum();
      private int numOfClicks = firstRan -1;
      private int numOfClicks2 = firstRan2 - 1;
-     int roll = 0;
-     int roll2 = 0;
+     private int roll = 0;
+     private int roll2 = 0;
 
-    ArrayList<Pair> loc = new ArrayList<Pair>();
-    ArrayList<Snake> snakes = new ArrayList<Snake>();
-    ArrayList<Ladder> ladders = new ArrayList<Ladder>();
+    private ArrayList<Pair> loc = new ArrayList<Pair>();
+    private ArrayList<Snake> snakes = new ArrayList<Snake>();
+    private ArrayList<Ladder> ladders = new ArrayList<Ladder>();
 
     public HelloController () {
 
@@ -227,9 +227,7 @@ public class HelloController {
             a.add(new Ladder(loc.get(83), loc.get(95)));
     }
 
-    int turn = 0;
-    boolean hitSnakeOrLadder = false;
-    boolean hitSnakeOrLadder2 = false;
+    private int turn = 0;
 
     public void click(MouseEvent event) {
 
@@ -267,8 +265,8 @@ public class HelloController {
             }
 
 
-            int indexOfSnake = containsSnake(loc.get(numOfClicks).x, loc.get(numOfClicks).y);
-            int indexOfLadder = containsLadder(loc.get(numOfClicks).x, loc.get(numOfClicks).y);
+            int indexOfSnake = containsSnake(loc.get(numOfClicks).getX(), loc.get(numOfClicks).getY());
+            int indexOfLadder = containsLadder(loc.get(numOfClicks).getX(), loc.get(numOfClicks).getY());
 
             roll = randomInt();
 
@@ -278,8 +276,8 @@ public class HelloController {
 
                 numOfClicks = loc.indexOf(snakes.get(indexOfSnake).getNewPosition())+roll ;
 
-                blue.setLayoutX(snakes.get(indexOfSnake).getNewPosition().x);
-                blue.setLayoutY(snakes.get(indexOfSnake).getNewPosition().y);
+                blue.setLayoutX(snakes.get(indexOfSnake).getNewPosition().getX());
+                blue.setLayoutY(snakes.get(indexOfSnake).getNewPosition().getY());
 
             }
 
@@ -289,15 +287,15 @@ public class HelloController {
 
                 numOfClicks = loc.indexOf(ladders.get(indexOfLadder).getNewPosition()) +roll;
 
-                blue.setLayoutX(ladders.get(indexOfLadder).getNewPosition().x);
-                blue.setLayoutY(ladders.get(indexOfLadder).getNewPosition().y);
+                blue.setLayoutX(ladders.get(indexOfLadder).getNewPosition().getX());
+                blue.setLayoutY(ladders.get(indexOfLadder).getNewPosition().getY());
 
             }
 
             else{
 
-                blue.setLayoutX(loc.get(numOfClicks).x);
-                blue.setLayoutY(loc.get(numOfClicks).y);
+                blue.setLayoutX(loc.get(numOfClicks).getX());
+                blue.setLayoutY(loc.get(numOfClicks).getY());
 
                 numOfClicks+= roll;
             }
@@ -337,8 +335,8 @@ public class HelloController {
             }
 
 
-            int indexOfSnake = containsSnake(loc.get(numOfClicks2).x, loc.get(numOfClicks2).y);
-            int indexOfLadder = containsLadder(loc.get(numOfClicks2).x, loc.get(numOfClicks2).y);
+            int indexOfSnake = containsSnake(loc.get(numOfClicks2).getX(), loc.get(numOfClicks2).getY());
+            int indexOfLadder = containsLadder(loc.get(numOfClicks2).getX(), loc.get(numOfClicks2).getY());
             roll2 = randomInt();
 
 
@@ -347,8 +345,8 @@ public class HelloController {
 
                 numOfClicks2 = loc.indexOf(snakes.get(indexOfSnake).getNewPosition()) + roll2;
 
-                red.setLayoutX(snakes.get(indexOfSnake).getNewPosition().x);
-                red.setLayoutY(snakes.get(indexOfSnake).getNewPosition().y);
+                red.setLayoutX(snakes.get(indexOfSnake).getNewPosition().getX());
+                red.setLayoutY(snakes.get(indexOfSnake).getNewPosition().getY());
 
             }
 
@@ -357,15 +355,15 @@ public class HelloController {
 
                 numOfClicks2 = loc.indexOf(ladders.get(indexOfLadder).getNewPosition()) + roll2;
 
-                red.setLayoutX(ladders.get(indexOfLadder).getNewPosition().x);
-                red.setLayoutY(ladders.get(indexOfLadder).getNewPosition().y);
+                red.setLayoutX(ladders.get(indexOfLadder).getNewPosition().getX());
+                red.setLayoutY(ladders.get(indexOfLadder).getNewPosition().getY());
 
             }
 
             else{
 
-                red.setLayoutX(loc.get(numOfClicks2).x);
-                red.setLayoutY(loc.get(numOfClicks2).y);
+                red.setLayoutX(loc.get(numOfClicks2).getX());
+                red.setLayoutY(loc.get(numOfClicks2).getY());
 
                 numOfClicks2+= roll2;
             }
@@ -382,7 +380,7 @@ public class HelloController {
     public int containsSnake(double x, double y) {
 
         for(int i = 0;i<snakes.size();i++) {
-            if(snakes.get(i).getOriginalPosition().x == x && snakes.get(i).getOriginalPosition().y == y) {
+            if(snakes.get(i).getOriginalPosition().getX() == x && snakes.get(i).getOriginalPosition().getY() == y) {
                 //snake at this position
                 return i; //index of the snake in snakes
             }
@@ -394,7 +392,7 @@ public class HelloController {
     public int containsLadder(double x, double y) {
 
         for(int i = 0;i<ladders.size();i++) {
-            if(ladders.get(i).getOriginalPosition().x == x && ladders.get(i).getOriginalPosition().y == y) {
+            if(ladders.get(i).getOriginalPosition().getX() == x && ladders.get(i).getOriginalPosition().getY() == y) {
                 //ladder at this position
                 return i;
             }
@@ -587,30 +585,6 @@ public class HelloController {
 
     public void setTurn(int turn) {
         this.turn = turn;
-    }
-
-    public boolean isHitSnakeOrLadder() {
-        return this.hitSnakeOrLadder;
-    }
-
-    public boolean getHitSnakeOrLadder() {
-        return this.hitSnakeOrLadder;
-    }
-
-    public void setHitSnakeOrLadder(boolean hitSnakeOrLadder) {
-        this.hitSnakeOrLadder = hitSnakeOrLadder;
-    }
-
-    public boolean isHitSnakeOrLadder2() {
-        return this.hitSnakeOrLadder2;
-    }
-
-    public boolean getHitSnakeOrLadder2() {
-        return this.hitSnakeOrLadder2;
-    }
-
-    public void setHitSnakeOrLadder2(boolean hitSnakeOrLadder2) {
-        this.hitSnakeOrLadder2 = hitSnakeOrLadder2;
     }
 
 
