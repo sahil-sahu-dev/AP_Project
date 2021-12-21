@@ -40,6 +40,14 @@ class Snake {
     public Pair getOriginalPosition() {
         return originalPosition;
     }
+
+    public void setOriginalPosition(Pair originalPosition) {
+        this.originalPosition = originalPosition;
+    }
+    public void setNewPosition(Pair newPosition) {
+        this.newPosition = newPosition;
+    }
+
 }
 
 class Ladder {
@@ -61,18 +69,44 @@ class Ladder {
     public Pair getOriginalPosition() {
         return originalPosition;
     }
+
+    public void setOriginalPosition(Pair originalPosition) {
+        this.originalPosition = originalPosition;
+    }
+    public void setNewPosition(Pair newPosition) {
+        this.newPosition = newPosition;
+    }
+
 }
 
 
 class Pair {
 
-    double x;
-    double y;
+    private double x;
+    private double y;
 
     public Pair(double x, double y) {
         this.x = x;
         this.y = y;
     }
+
+
+    public double getX() {
+        return this.x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return this.y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
 }
 
 
@@ -385,5 +419,199 @@ public class HelloController {
     public void setLabelOfDice(int prevDice) {
         diceRoll.setText("You rolled " + String.valueOf(prevDice));
     }
+
+
+    public Stage getStage() {
+        return this.stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Scene getScene() {
+        return this.scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public Parent getRoot() {
+        return this.root;
+    }
+
+    public void setRoot(Parent root) {
+        this.root = root;
+    }
+
+    public Button getNext() {
+        return this.next;
+    }
+
+    public void setNext(Button next) {
+        this.next = next;
+    }
+
+    public ImageView getImage() {
+        return this.image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
+
+    public ImageView getBlue() {
+        return this.blue;
+    }
+
+    public void setBlue(ImageView blue) {
+        this.blue = blue;
+    }
+
+    public ImageView getRed() {
+        return this.red;
+    }
+
+    public void setRed(ImageView red) {
+        this.red = red;
+    }
+
+    public ImageView getDiceImage() {
+        return this.diceImage;
+    }
+
+    public void setDiceImage(ImageView diceImage) {
+        this.diceImage = diceImage;
+    }
+
+    public Button getB() {
+        return this.b;
+    }
+
+    public void setB(Button b) {
+        this.b = b;
+    }
+
+    public Label getDiceRoll() {
+        return this.diceRoll;
+    }
+
+    public void setDiceRoll(Label diceRoll) {
+        this.diceRoll = diceRoll;
+    }
+
+    public Button getB2() {
+        return this.b2;
+    }
+
+    public void setB2(Button b2) {
+        this.b2 = b2;
+    }
+
+    public int getFirstRan() {
+        return this.firstRan;
+    }
+
+    public void setFirstRan(int firstRan) {
+        this.firstRan = firstRan;
+    }
+
+    public int getFirstRan2() {
+        return this.firstRan2;
+    }
+
+    public void setFirstRan2(int firstRan2) {
+        this.firstRan2 = firstRan2;
+    }
+
+    public int getNumOfClicks() {
+        return this.numOfClicks;
+    }
+
+    public void setNumOfClicks(int numOfClicks) {
+        this.numOfClicks = numOfClicks;
+    }
+
+    public int getNumOfClicks2() {
+        return this.numOfClicks2;
+    }
+
+    public void setNumOfClicks2(int numOfClicks2) {
+        this.numOfClicks2 = numOfClicks2;
+    }
+
+    public int getRoll() {
+        return this.roll;
+    }
+
+    public void setRoll(int roll) {
+        this.roll = roll;
+    }
+
+    public int getRoll2() {
+        return this.roll2;
+    }
+
+    public void setRoll2(int roll2) {
+        this.roll2 = roll2;
+    }
+
+    public ArrayList<Pair> getLoc() {
+        return this.loc;
+    }
+
+    public void setLoc(ArrayList<Pair> loc) {
+        this.loc = loc;
+    }
+
+    public ArrayList<Snake> getSnakes() {
+        return this.snakes;
+    }
+
+    public void setSnakes(ArrayList<Snake> snakes) {
+        this.snakes = snakes;
+    }
+
+    public ArrayList<Ladder> getLadders() {
+        return this.ladders;
+    }
+
+    public void setLadders(ArrayList<Ladder> ladders) {
+        this.ladders = ladders;
+    }
+
+    public int getTurn() {
+        return this.turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    public boolean isHitSnakeOrLadder() {
+        return this.hitSnakeOrLadder;
+    }
+
+    public boolean getHitSnakeOrLadder() {
+        return this.hitSnakeOrLadder;
+    }
+
+    public void setHitSnakeOrLadder(boolean hitSnakeOrLadder) {
+        this.hitSnakeOrLadder = hitSnakeOrLadder;
+    }
+
+    public boolean isHitSnakeOrLadder2() {
+        return this.hitSnakeOrLadder2;
+    }
+
+    public boolean getHitSnakeOrLadder2() {
+        return this.hitSnakeOrLadder2;
+    }
+
+    public void setHitSnakeOrLadder2(boolean hitSnakeOrLadder2) {
+        this.hitSnakeOrLadder2 = hitSnakeOrLadder2;
+    }
+
 
 }

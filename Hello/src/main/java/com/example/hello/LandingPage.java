@@ -31,4 +31,30 @@ public class LandingPage {
             System.out.println(exception.getLocalizedMessage());
         }
     }
+
+
+    public Parent getRoot() {
+        return this.root;
+    }
+
+    public void setRoot(Parent root) {
+        this.root = root;
+    }
+
+    public Scene getScene() {
+        return this.scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public Stage getStage() {
+        return this.stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
 }

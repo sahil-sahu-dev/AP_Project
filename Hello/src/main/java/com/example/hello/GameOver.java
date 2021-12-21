@@ -11,4 +11,11 @@ public class GameOver {
     public void setWinnerName(String name) {
         winnerName.setText(name + " wins");
     }
+
+
+    public Label getWinnerName() {
+        return this.winnerName;
+    }
+
+
 }
