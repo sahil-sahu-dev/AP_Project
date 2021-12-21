@@ -2,28 +2,24 @@ package com.example.hello;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.*;
 
 import java.io.FileInputStream;
-import java.util.ArrayList;
 
-
-//class BoardElement{
-//
-//    private Pair originalPosition;
-//    private Pair newPosition;
-//
-//    public void addElement(Pair originalPosition, Pair newPosition) {
-//        this.originalPosition = originalPosition;
-//        this.newPosition = newPosition;
-//    }
-//}
 
 class Snake {
     private Pair originalPosition;
@@ -82,43 +78,76 @@ class Pair {
 
 public class HelloController {
 
-    static private int numOfClicks = 0;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    @FXML
+    private Button next;
+    @FXML
+    private ImageView image;
+    @FXML
+    private ImageView blue;
+    @FXML
+    private  ImageView red;
+    @FXML
+    private ImageView diceImage;
+    @FXML
+    private Button b;
+    @FXML
+    private Label diceRoll;
+    @FXML
+    private Button b2;
+
+
+     int firstRan = randomNum();
+     int firstRan2 = randomNum();
+     private int numOfClicks = firstRan -1;
+     private int numOfClicks2 = firstRan2 - 1;
+     int roll = 0;
+     int roll2 = 0;
 
     ArrayList<Pair> loc = new ArrayList<Pair>();
     ArrayList<Snake> snakes = new ArrayList<Snake>();
     ArrayList<Ladder> ladders = new ArrayList<Ladder>();
 
-    public HelloController () {System.out.println(numOfClicks);
+    public HelloController () {
+
+
         double locx = 100;
-        double locy = 480;
+        double locy = 550;
         int current_row = 1;
         int current_col = 1;
+
+        int locationFactorX = 42;
+        int locationFactorY = 58;
 
         for(int i = 0;i<10;i++) {
 
             for(int j = 1;j<=10;j++) {
                 if(i%2==0){
                     if(j < 10) {
-                        loc.add(new Pair(locx+50, locy));
-                        locx+=50;
+                        loc.add(new Pair(locx+locationFactorX, locy));
+                        locx+=locationFactorX;
                     }
                     else {
-                        loc.add(new Pair(locx,locy-50));
-                        locy-=50;
+                        loc.add(new Pair(locx,locy-locationFactorY));
+                        locy-=locationFactorY;
                     }
                 }
                 else{
                     if(j < 10) {
-                        loc.add(new Pair(locx-50, locy));
-                        locx-=50;
+                        loc.add(new Pair(locx-locationFactorX, locy));
+                        locx-=locationFactorX;
                     }
                     else {
-                        loc.add(new Pair(locx,locy-50));
-                        locy-=50;
+                        loc.add(new Pair(locx,locy-locationFactorY));
+                        locy-=locationFactorY;
                     }
                 }
 
             }
+
         }
 
 
@@ -136,90 +165,181 @@ public class HelloController {
 
             //create snakes list
 
-            a.add(new Snake(loc.get(8), loc.get(4)));
-            a.add(new Snake(loc.get(20), loc.get(16)));
-            a.add(new Snake(loc.get(33), loc.get(12)));
-            a.add(new Snake(loc.get(61), loc.get(36)));
-            a.add(new Snake(loc.get(74), loc.get(41)));
-            a.add(new Snake(loc.get(66), loc.get(49)));
-            a.add(new Snake(loc.get(67), loc.get(47)));
-            a.add(new Snake(loc.get(86), loc.get(69)));
-            a.add(new Snake(loc.get(97), loc.get(80)));
+            a.add(new Snake(loc.get(21), loc.get(3)));
+            a.add(new Snake(loc.get(30), loc.get(7)));
+            a.add(new Snake(loc.get(44), loc.get(23)));
+            a.add(new Snake(loc.get(57), loc.get(38)));
+            a.add(new Snake(loc.get(64), loc.get(54)));
+            a.add(new Snake(loc.get(49), loc.get(9)));
+            a.add(new Snake(loc.get(79), loc.get(60)));
+            a.add(new Snake(loc.get(90), loc.get(46)));
+            a.add(new Snake(loc.get(93), loc.get(52)));
+            a.add(new Snake(loc.get(96), loc.get(63)));
 
     }
 
     public void createLaddersList(ArrayList<Ladder> a, ArrayList<Pair> loc) {
 
 
-            a.add(new Ladder(loc.get(2), loc.get(14)));
-            a.add(new Ladder(loc.get(15), loc.get(37)));
-            a.add(new Ladder(loc.get(24), loc.get(33)));
-            a.add(new Ladder(loc.get(19), loc.get(58)));
-            a.add(new Ladder(loc.get(30), loc.get(46)));
-            a.add(new Ladder(loc.get(54), loc.get(72)));
-            a.add(new Ladder(loc.get(60), loc.get(78)));
-            a.add(new Ladder(loc.get(84), loc.get(92)));
+            a.add(new Ladder(loc.get(0), loc.get(19)));
+            a.add(new Ladder(loc.get(4), loc.get(25)));
+            a.add(new Ladder(loc.get(6), loc.get(31)));
+            a.add(new Ladder(loc.get(14), loc.get(32)));
+            a.add(new Ladder(loc.get(22), loc.get(62)));
+            a.add(new Ladder(loc.get(36), loc.get(56)));
+            a.add(new Ladder(loc.get(68), loc.get(89)));
+            a.add(new Ladder(loc.get(61), loc.get(80)));
+            a.add(new Ladder(loc.get(71), loc.get(92)));
+            a.add(new Ladder(loc.get(83), loc.get(95)));
     }
 
+    int turn = 0;
+    boolean hitSnakeOrLadder = false;
+    boolean hitSnakeOrLadder2 = false;
 
-    @FXML
-    private Button next;
-    @FXML
-    private Label label;
-    @FXML
-    private ImageView image;
-    @FXML
-    private Button b;
+    public void click(MouseEvent event) {
+
+        if(turn % 2 == 0) {
+
+            //if we reached the last position of the board
+
+            if(numOfClicks >=99) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
+                try{
+                    root = loader.load();
+                    GameOver gameOver = loader.getController();
+                    gameOver.setWinnerName("Blue");
+
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+
+                }catch(IOException exception){
+                    System.out.println(exception.getLocalizedMessage());
+                }
+
+                return;
+
+            }
+
+            //first button moves on even index
+
+            if(firstRan != -1) {
+                setLabelOfDice(firstRan);
+                firstRan = -1;
+            }else {
+                setLabelOfDice(roll);
+            }
 
 
+            int indexOfSnake = containsSnake(loc.get(numOfClicks).x, loc.get(numOfClicks).y);
+            int indexOfLadder = containsLadder(loc.get(numOfClicks).x, loc.get(numOfClicks).y);
 
-    public void click(ActionEvent event) {
-
-        int indexOfSnake = containsSnake(loc.get(numOfClicks).x, loc.get(numOfClicks).y);
-        int indexOfLadder = containsLadder(loc.get(numOfClicks).x, loc.get(numOfClicks).y);
-
+            roll = randomInt();
 
 
-        if(indexOfSnake>=0) {
-            //theres a snake here. Location in snakes is at indexOfSnakes
+            if(indexOfSnake != -1) {
+                //theres a snake here. Location in snakes is at indexOfSnakes
 
-            numOfClicks = loc.indexOf(snakes.get(indexOfSnake).getNewPosition()) +1;
+                numOfClicks = loc.indexOf(snakes.get(indexOfSnake).getNewPosition())+roll ;
 
-            b.setLayoutX(snakes.get(indexOfSnake).getNewPosition().x);
-            b.setLayoutY(snakes.get(indexOfSnake).getNewPosition().y);
+                blue.setLayoutX(snakes.get(indexOfSnake).getNewPosition().x);
+                blue.setLayoutY(snakes.get(indexOfSnake).getNewPosition().y);
+
+            }
+
+            else if(indexOfLadder != -1) {
+                //theres a ladder here. Location in ladders is at indexOfLadder
 
 
+                numOfClicks = loc.indexOf(ladders.get(indexOfLadder).getNewPosition()) +roll;
 
-            System.out.println(numOfClicks );
+                blue.setLayoutX(ladders.get(indexOfLadder).getNewPosition().x);
+                blue.setLayoutY(ladders.get(indexOfLadder).getNewPosition().y);
+
+            }
+
+            else{
+
+                blue.setLayoutX(loc.get(numOfClicks).x);
+                blue.setLayoutY(loc.get(numOfClicks).y);
+
+                numOfClicks+= roll;
+            }
+
+
         }
 
-        else if(indexOfLadder>=0) {
-            //theres a ladder here. Location in ladders is at indexOfLadder
+        else {
 
-            numOfClicks = loc.indexOf(ladders.get(indexOfLadder).getNewPosition())+1 ;
+            //second button moves on odd index
 
-            b.setLayoutX(ladders.get(indexOfLadder).getNewPosition().x);
-            b.setLayoutY(ladders.get(indexOfLadder).getNewPosition().y);
+            //if we reached the last position of the board
 
-            System.out.println(numOfClicks);
+            if(numOfClicks2 >=99) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
+                try{
+                    root = loader.load();
+                    GameOver gameOver = loader.getController();
+                    gameOver.setWinnerName("Red");
 
-            //label.setText("X:"+String.valueOf(loc.get(numOfClicks).x)+"Y:"+String.valueOf(loc.get(numOfClicks).y) + " Index = " + numOfClicks);
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+
+                }catch(IOException exception){
+                    System.out.println(exception.getLocalizedMessage());
+                }
+                return;
+            }
+
+            if(firstRan2 != -1) {
+                setLabelOfDice(firstRan2);
+                firstRan2 = -1;
+            }else{
+                setLabelOfDice(roll2);
+            }
+
+
+            int indexOfSnake = containsSnake(loc.get(numOfClicks2).x, loc.get(numOfClicks2).y);
+            int indexOfLadder = containsLadder(loc.get(numOfClicks2).x, loc.get(numOfClicks2).y);
+            roll2 = randomInt();
+
+
+            if(indexOfSnake != -1) {
+                //theres a snake here. Location in snakes is at indexOfSnakes
+
+                numOfClicks2 = loc.indexOf(snakes.get(indexOfSnake).getNewPosition()) + roll2;
+
+                red.setLayoutX(snakes.get(indexOfSnake).getNewPosition().x);
+                red.setLayoutY(snakes.get(indexOfSnake).getNewPosition().y);
+
+            }
+
+            else if(indexOfLadder != -1) {
+                //theres a ladder here. Location in ladders is at indexOfLadder
+
+                numOfClicks2 = loc.indexOf(ladders.get(indexOfLadder).getNewPosition()) + roll2;
+
+                red.setLayoutX(ladders.get(indexOfLadder).getNewPosition().x);
+                red.setLayoutY(ladders.get(indexOfLadder).getNewPosition().y);
+
+            }
+
+            else{
+
+                red.setLayoutX(loc.get(numOfClicks2).x);
+                red.setLayoutY(loc.get(numOfClicks2).y);
+
+                numOfClicks2+= roll2;
+            }
+
 
         }
 
-        else{
-            //label.setText("X:"+String.valueOf(loc.get(numOfClicks).x)+"Y:"+String.valueOf(loc.get(numOfClicks).y) + " Index = " + numOfClicks);
-
-            b.setLayoutX(loc.get(numOfClicks).x);
-            b.setLayoutY(loc.get(numOfClicks).y);
-            numOfClicks+=1;
-
-
-            System.out.println(numOfClicks);
-        }
-
-        //label.setText("X:"+String.valueOf(loc.get(numOfClicks).x)+"Y:"+String.valueOf(loc.get(numOfClicks).y) + " Index = " + numOfClicks);
-
+        turn++;
 
     }
 
@@ -240,13 +360,30 @@ public class HelloController {
     public int containsLadder(double x, double y) {
 
         for(int i = 0;i<ladders.size();i++) {
-            if(ladders.get(i).getOriginalPosition().x == x && snakes.get(i).getOriginalPosition().y == y) {
+            if(ladders.get(i).getOriginalPosition().x == x && ladders.get(i).getOriginalPosition().y == y) {
                 //ladder at this position
                 return i;
             }
         }
 
         return -1;
+    }
+
+    public int randomInt() {
+        Random r = new Random();
+        int ran = r.nextInt(6) + 1;
+
+        return ran;
+    }
+
+    public int randomNum() {
+        Random r = new Random();
+        int ran = r.nextInt(6) + 1;
+        return ran;
+    }
+
+    public void setLabelOfDice(int prevDice) {
+        diceRoll.setText("You rolled " + String.valueOf(prevDice));
     }
 
 }

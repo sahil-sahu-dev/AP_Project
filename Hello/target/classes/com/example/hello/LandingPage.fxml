@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello.LandingPage">
+   <children>
+      <Label alignment="CENTER" layoutX="225.0" layoutY="351.0" prefHeight="65.0" prefWidth="182.0" text="Welcome!" textAlignment="CENTER">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="216.0" fitWidth="645.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Button alignment="CENTER" layoutX="253.0" layoutY="461.0" mnemonicParsing="false" onAction="#onStartGameButtonClick" prefHeight="46.0" prefWidth="125.0" text="Start Game" textFill="#f50000">
+         <effect>
+            <Lighting bumpInput="$null" surfaceScale="4.64">
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color green="1.0" blue="0.2666666805744171" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

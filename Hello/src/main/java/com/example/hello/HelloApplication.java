@@ -14,9 +14,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Group root = new Group();
-        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("LandingPage.fxml"));
         //Scene scene = new Scene(fxmlLoader, 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("Snakes and Ladders");
         stage.setScene(new Scene(fxmlLoader));
         stage.show();
     }
